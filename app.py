@@ -16,3 +16,11 @@ def home_page():
     title = satisfaction_survey.title
     instructions = satisfaction_survey.instructions
     return render_template('home.html', title=title, instructions=instructions)
+
+@app.route('/questions/<index>')
+def questions(index):
+    '''Renders the questions page for given index. User is prompted submit response.'''
+    index = int(index)
+    question = satisfaction_survey.questions[index].question
+    choices = satisfaction_survey.questions[index].choices
+    return render_template('questions.html', index=index, question=question, choices=choices)
