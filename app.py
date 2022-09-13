@@ -13,6 +13,7 @@ responses = [None for question in survey.questions]
 @app.route('/')
 def show_survey_start():
     '''Renders the homepage'''
+    responses = [None for question in survey.questions]
     title = survey.title
     instructions = survey.instructions
     return render_template('survey_start.html', title=title, instructions=instructions)
@@ -32,3 +33,9 @@ def handle_answer(index):
     if None in responses:
         next_index = responses.index(None)
         return redirect(f'/questions/{next_index}')
+    else:
+        return redirect('/thanks')
+
+@app.route('/thanks')
+def show_thanks():
+    return render_template('thanks.html')
