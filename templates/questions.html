@@ -8,7 +8,7 @@ Question #{{index + 1}}
 <h1>Question #{{index + 1}}</h1>
 <p>{{question}}</p>
 <div class="container text-left p-0">
-    <form action="/answer/{{index}}" method="post">
+    <form action="/answer" method="post">
         {% for choice in choices %}
         <div class="form-check">
             <input type="radio" id="{{choice}}" name="choice" class="form-check-input" value="{{choice}}" required>
