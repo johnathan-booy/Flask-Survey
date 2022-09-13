@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from surveys import satisfaction_survey as survey
 
@@ -28,8 +28,10 @@ def start_survey():
 def show_question(index):
     '''Renders the questions page for given index. User is prompted submit response.'''
     if len(responses) == len(survey.questions):
+        flash("You've already completed this survey!")
         return redirect('/thanks')
     elif index >= len(survey.questions) or index > len(responses):
+        flash("Oops, let's finish this question first!")
         return redirect(f'/questions/{len(responses)}')
     else:
         question = survey.questions[index].question
